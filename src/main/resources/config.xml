@@ -1,0 +1,77 @@
+<!--
+<?xml version="1.0" encoding="UTF-8"?>
+-->
+<!--
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    &lt;!&ndash; First Implementation&ndash;&gt;
+    &lt;!&ndash;
+    <bean id="cameraRoll" class="ru.geekbrains.lesson1.ColorCameraRoll"/>
+    <bean id="camera" class="ru.geekbrains.lesson1.CameraImpl">
+        <property name="cameraRoll">
+            <ref bean="cameraRoll"/>
+        </property>
+    </bean>
+    &ndash;&gt;
+
+    &lt;!&ndash; Second Implementation&ndash;&gt;
+    <bean id="camera" class="ru.geekbrains.lesson1.CameraImpl">
+        <property name="cameraRoll">
+            <bean class="ru.geekbrains.lesson1.ColorCameraRoll"/>
+        </property>
+    </bean>
+</beans>
+-->
+
+<!--
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="ru.geekbrains.lesson1"/>
+
+    <bean id="camera" class="ru.geekbrains.lesson1.CameraImpl">
+        <property name="cameraRoll">
+            <ref bean="cameraRoll"/>
+        </property>
+    </bean>
+</beans>
+-->
+
+<!--
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+        <context:component-scan base-package="ru.geekbrains.lesson1"/>
+</beans>
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--
+    <bean id="helloMan" class="ru.geekbrains.lesson1.HelloManOnceSay">
+        <constructor-arg value="Yuri"/>
+        <constructor-arg type="java.lang.String" index="0" value="Yuri" />
+    </bean>
+    -->
+
+    <bean id="helloMan" class="ru.geekbrains.lesson1.HelloManOnceSay">
+        <property name="name" value="Yuri"/>
+    </bean>
+
+</beans>
