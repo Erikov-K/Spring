@@ -1,52 +1,33 @@
 package com.geekbrains.springbootproject.entities;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "products")
+@Data
+@NoArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id")
     private Long id;
 
+    @NotNull(message = "Title cannot be null")
+    @Size(min = 3, message = "Title length must be greater than 5 symbols")
     @Column(name = "title")
     private String title;
 
+    @NotNull(message = "Cost cannot be null")
+    @Min(value = 1, message = "Min cost error")
     @Column(name = "cost")
-    private Long cost;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Long getCost() {
-        return cost;
-    }
-
-    public void setCost(Long cost) {
-        this.cost = cost;
-    }
-
-    public Product() {
-    }
-
-    @Override
-    public String toString() {
-        return "\n Product ID = " + id + "; Product Title = " + title + "; Product Cost = " + cost + "; \n";
-    }
+    private double cost;
 }
