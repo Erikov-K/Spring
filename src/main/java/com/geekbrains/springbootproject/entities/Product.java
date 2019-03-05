@@ -16,18 +16,22 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Data
 @NoArgsConstructor
 public class Product {
+
+    public static final int TITLE_LENGTH = 3;
+    public static final int MIN_COST = 1;
+
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id")
     private Long id;
 
     @NotNull(message = "Title cannot be null")
-    @Size(min = 3, message = "Title length must be greater than 5 symbols")
+    @Size(min = TITLE_LENGTH, message = "Title length must be greater than " + TITLE_LENGTH + " symbols;")
     @Column(name = "title")
     private String title;
 
     @NotNull(message = "Cost cannot be null")
-    @Min(value = 1, message = "Min cost error")
+    @Min(value = MIN_COST, message = "Cost must be greater than " + MIN_COST + " ;")
     @Column(name = "cost")
     private double cost;
 }

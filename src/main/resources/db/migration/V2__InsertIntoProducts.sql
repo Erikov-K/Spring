@@ -3,19 +3,6 @@
 # http://filldb.info/
 #
 
-SET FOREIGN_KEY_CHECKS = 0;
-
-DROP TABLE IF EXISTS `products`;
-
-CREATE TABLE `products` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(150) NOT NULL,
-  `cost` decimal(8,2) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=201 DEFAULT CHARSET=utf8;
-
-SET FOREIGN_KEY_CHECKS = 1;
-
 INSERT INTO `products` (`id`, `title`, `cost`) VALUES (1, 'Violet', '164.60');
 INSERT INTO `products` (`id`, `title`, `cost`) VALUES (2, 'Olive', '814.40');
 INSERT INTO `products` (`id`, `title`, `cost`) VALUES (3, 'Gold', '969.93');
@@ -216,5 +203,3 @@ INSERT INTO `products` (`id`, `title`, `cost`) VALUES (197, 'YellowGreen', '296.
 INSERT INTO `products` (`id`, `title`, `cost`) VALUES (198, 'MediumTurquoise', '549.57');
 INSERT INTO `products` (`id`, `title`, `cost`) VALUES (199, 'GoldenRod', '582.73');
 INSERT INTO `products` (`id`, `title`, `cost`) VALUES (200, 'Plum', '412.56');
-
-
