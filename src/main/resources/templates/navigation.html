@@ -31,9 +31,9 @@
                 <li class="nav-item" th:classappend="${activeTab == 'Shop' ? 'active' : ''}">
                     <a class="nav-link" th:href="@{/shop}">Каталог товаров<span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item" th:classappend="${activeTab == 'Info' ? 'active' : ''}">
-                    <a class="nav-link" th:href="@{/info}">Информация<span class="sr-only">(current)</span></a>
-                </li>
+<!--                <li class="nav-item" th:classappend="${activeTab == 'Info' ? 'active' : ''}">-->
+<!--                    <a class="nav-link" th:href="@{/info}">Информация<span class="sr-only">(current)</span></a>-->
+<!--                </li>-->
                 <li sec:authorize="hasRole('ADMIN')" class="nav-item"
                     th:classappend="${activeTab == 'Products' ? 'active' : ''}">
                     <a class="nav-link" th:href="@{/product/edit/0}">Добавить товар</a>

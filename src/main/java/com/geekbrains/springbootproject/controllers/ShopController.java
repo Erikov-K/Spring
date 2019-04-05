@@ -69,4 +69,12 @@ public class ShopController {
         model.addAttribute("word", word);
         return "shop-page";
     }
+
+    @GetMapping("/info")
+    public String infoPage(Model model,
+                           @RequestParam(value = "id", required = true) Long id) {
+        Product product = productsService.findById(id);
+        model.addAttribute("product", product);
+        return "info";
+    }
 }

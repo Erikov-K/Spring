@@ -11,6 +11,7 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -62,6 +63,12 @@ public class Product implements Serializable {
     @Column(name = "update_at")
     @UpdateTimestamp
     private LocalDateTime updateAt;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "reviews_products",
+            joinColumns = @JoinColumn(name = "review_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
+    private Collection<Role> roles;
 
     public void addImage(ProductImage productImage) {
         if (images == null) {
