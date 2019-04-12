@@ -1,40 +1,27 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="ctx" th:content="${#httpServletRequest.getContextPath()}"/>
-    <title>Products</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-          crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous">
-    </script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <title>GeekWinterMarket</title>
+
+    <link rel="icon" type="image/png" th:href="@{/favicon.ico}"/>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
+
 <body>
-    <div class="container">
-        <br>
-        <!--<h1>All Products</h1>-->
-        <table class="table table-hover">
-            <thead class="thead-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Cost</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="product : ${products}">
-                    <td th:text="${product.id}"/>
-                    <td>
-                        <a th:href="@{'/about/' + ${product.id}}" th:text="${product.title}"/>
-                    </td>
-                    <td th:text="${product.cost}"/>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+
+<div th:replace="~{navigation :: navi(Home)}" />
+
+<div class="container">
+    <br>
+    <h1>Java Интернет-магазин</h1>
+    Добро пожаловать в наш интернет-магазин, работающий для Вас с 2018 года!
+</div>
 </body>
 </html>

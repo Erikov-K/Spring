@@ -1,52 +1,84 @@
 package com.geekbrains.springbootproject.entities;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
+import javax.validation.constraints.*;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "products")
-public class Product {
+@Data
+public class Product implements Serializable {
     @Id
-    @GeneratedValue(strategy = IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
+    @ManyToOne
+    @NotNull(message = "категория не выбрана")
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    @Column(name = "vendor_code")
+    @NotNull(message = "не может быть пустым")
+    @Pattern(regexp = "([0-9]{1,})", message = "недопустимый символ")
+    @Size(min = 8, max = 8, message = "требуется 8 числовых символов")
+    private String vendorCode;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL}, mappedBy = "product")
+    private List<ProductImage> images;
+
     @Column(name = "title")
+    @NotNull(message = "не может быть пустым")
+    @Size(min = 5, max = 250, message = "требуется минимум 5 символов")
     private String title;
 
-    @Column(name = "cost")
-    private Long cost;
+    @Column(name = "short_description")
+    private String shortDescription;
 
-    public Long getId() {
-        return id;
-    }
+    @Column(name = "full_description")
+    private String fullDescription;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @Column(name = "price")
+    @NotNull(message = "не может быть пустым")
+    @DecimalMin(value = "0.01", message = "минимальное значение 0")
+    @Digits(integer = 10, fraction = 2)
+    private double price;
 
-    public String getTitle() {
-        return title;
-    }
+    @Column(name = "create_at")
+    @CreationTimestamp
+    private LocalDateTime createAt;
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+    @Column(name = "update_at")
+    @UpdateTimestamp
+    private LocalDateTime updateAt;
 
-    public Long getCost() {
-        return cost;
-    }
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "reviews_products",
+            joinColumns = @JoinColumn(name = "review_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
+    private Collection<Role> roles;
 
-    public void setCost(Long cost) {
-        this.cost = cost;
-    }
-
-    public Product() {
+    public void addImage(ProductImage productImage) {
+        if (images == null) {
+            images = new ArrayList<>();
+        }
+        images.add(productImage);
     }
 
     @Override
     public String toString() {
-        return "\n Product ID = " + id + "; Product Title = " + title + "; Product Cost = " + cost + "; \n";
+        return "Product title = '" + title + "'";
     }
 }
