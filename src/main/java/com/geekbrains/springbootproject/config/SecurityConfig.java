@@ -51,6 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .antMatchers("/products/**").hasRole("ADMIN")
 //                .antMatchers("/shop/order/**").authenticated()
 //                .antMatchers("/profile/**").authenticated()
+//                .antMatchers("/profile/**").authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -60,7 +61,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutSuccessUrl("/")
-                .permitAll();
+                .permitAll()
+                .and()
+                .csrf().disable();
     }
 
     @Bean
